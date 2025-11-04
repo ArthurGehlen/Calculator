@@ -16,7 +16,6 @@ button {
 }
 
 body {
-  background-color: hsl(222, 26%, 31%);
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -125,6 +124,7 @@ header h2 {
   border-radius: 0.6rem;
   font-size: 2rem;
   width: 100%;
+  text-align: end;
 }
 
 .keypad_wrapper {
@@ -149,6 +149,10 @@ header h2 {
   min-width: 0;
 }
 
+.key:not(.delete_btn, .reset_btn, .equals_btn):hover {
+  background-color: hsl(0, 0%, 100%);
+}
+
 .delete_btn {
   font-size: 1.8rem;
   color: hsl(0, 0%, 100%);
@@ -168,6 +172,12 @@ header h2 {
   box-shadow: inset 0px -4px hsl(6, 70%, 34%);
 }
 
+.reset_btn:hover,
+.equals_btn:hover,
+.delete_btn:hover {
+  filter: brightness(2);
+}
+
 .reset_btn,
 .equals_btn {
   padding: 0.4rem;
@@ -175,4 +185,125 @@ header h2 {
   border: none;
   font-size: 1.8rem;
   color: hsl(0, 0%, 100%);
+}
+
+/* TEMAS */
+
+.theme_1 {
+  background-color: hsl(222, 26%, 31%);
+}
+
+.theme_2 {
+  background-color: hsl(0, 0%, 90%);
+}
+
+.theme_2 header h2,
+.theme_2 .theme_wrapper p,
+.theme_2 .theme_markers {
+  color: hsl(60, 10%, 19%);
+}
+
+.theme_2 .theme_container button {
+  background-color: hsl(0, 5%, 81%);
+}
+
+.theme_2 .theme_container button::before {
+  background-color: hsl(25, 98%, 40%);
+}
+
+.theme_2 .screen {
+  background-color: hsl(0, 0%, 93%);
+  color: hsl(60, 10%, 19%);
+}
+
+.theme_2 .keypad_wrapper {
+  background-color: hsl(0, 5%, 81%);
+}
+
+.theme_2 .key {
+  background-color: hsl(0, 0%, 90%);
+  box-shadow: inset 0px -4px hsl(35, 11%, 61%);
+  color: hsl(60, 10%, 19%);
+}
+
+.theme_2 .key:not(.delete_btn, .reset_btn):hover {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.theme_2 .delete_btn,
+.theme_2 .reset_btn {
+  background-color: hsl(185, 42%, 37%);
+  box-shadow: inset 0px -4px hsl(185, 58%, 25%);
+  color: hsl(0, 0%, 100%);
+}
+
+.theme_2 .equals_btn {
+  background-color: hsl(25, 98%, 40%);
+  box-shadow: inset 0px -4px hsl(25, 99%, 27%);
+}
+
+.theme_2 .delete_btn:hover,
+.theme_2 .reset_btn:hover,
+.theme_2 .equals_btn:hover {
+  filter: brightness(2);
+}
+
+.theme_3 {
+  background-color: hsl(268, 75%, 9%);
+}
+
+.theme_3 header h2,
+.theme_3 .theme_wrapper p,
+.theme_3 .theme_markers {
+  color: hsl(52, 100%, 62%);
+}
+
+.theme_3 .theme_container button {
+  background-color: hsl(268, 71%, 12%);
+}
+
+.theme_3 .theme_container button::before {
+  background-color: hsl(176, 100%, 44%);
+}
+
+.theme_3 .screen {
+  background-color: hsl(268, 71%, 12%);
+  color: hsl(52, 100%, 62%);
+}
+
+.theme_3 .keypad_wrapper {
+  background-color: hsl(268, 71%, 12%);
+}
+
+.theme_3 .key {
+  background-color: hsl(268, 47%, 21%);
+  box-shadow: inset 0px -4px hsl(290, 70%, 36%);
+  color: hsl(52, 100%, 62%);
+}
+
+.theme_3 .key:hover {
+  background-color: hsl(268, 47%, 21%);
+}
+
+.theme_3 .delete_btn,
+.theme_3 .reset_btn {
+  background-color: hsl(281, 89%, 26%);
+  box-shadow: inset 0px -4px hsl(285, 91%, 52%);
+  color: hsl(0, 0%, 100%);
+}
+
+.theme_3 .equals_btn {
+  background-color: hsl(176, 100%, 44%);
+  box-shadow: inset 0px -4px hsl(177, 92%, 70%);
+}
+
+.theme_3 .equals_btn:hover {
+  color: hsl(198, 20%, 13%);
+}
+
+.theme_3 .key:hover,
+.theme_3 .delete_btn:hover,
+.theme_3 .reset_btn:hover,
+.theme_3 .equals_btn:hover {
+  filter: brightness(2);
 }

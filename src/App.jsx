@@ -17,6 +17,12 @@ function App() {
     return setCurrentThemePhase(currentThemePhase + 1);
   };
 
+  {
+    /*
+      LEMBRAR DE NÃO DEIXAR CONSOLE.LOG() ESPALHADO NO CÓDGIGO :)
+    */
+  }
+
   const add_nums_into_screen = (e) => {
     if (e.target.name == ",") setCommaCount(commaCount + 1);
     if (commaCount >= 1 && e.target.name == ",") return;
@@ -28,6 +34,10 @@ function App() {
     setCommaCount(0);
     setCurrentCalc([]);
   };
+
+  useEffect(() => {
+    document.body.classList = `theme_${currentThemePhase}`;
+  }, [currentThemePhase]);
 
   return (
     <>
