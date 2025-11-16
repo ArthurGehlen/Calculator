@@ -1,9 +1,34 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import "./App.css";
+
+class Operators {
+  constructor(firstNum, lastNum) {
+    this.firstNum = firstNum;
+    this.lastNum = lastNum;
+  }
+
+  sum() {
+    return this.firstNum + this.lastNum;
+  }
+
+  subtract() {
+    return this.firstNum - this.lastNum;
+  }
+
+  multiply() {
+    return this.firstNum * this.lastNum;
+  }
+
+  divide() {
+    return this.firstNum / this.lastNum;
+  }
+}
+
+const operators = ["+", "-", "x", "/"];
 
 function App() {
   const [currentThemePhase, setCurrentThemePhase] = useState(1);
-  const [currentCalc, setCurrentCalc] = useState([]);
+  const [currentCalc, setCurrentCalc] = useState([0]);
   const [commaCount, setCommaCount] = useState(0);
   const [formattedCalc, setFormattedCalc] = useState(0);
   const [operation, setOperation] = useState("");
@@ -24,15 +49,31 @@ function App() {
   }
 
   const add_nums_into_screen = (e) => {
-    if (e.target.name == ",") setCommaCount(commaCount + 1);
+    if (e.target.name == ",") setCommaCount(1);
     if (commaCount >= 1 && e.target.name == ",") return;
 
     setCurrentCalc((prevNums) => [...prevNums, e.target.name]);
   };
 
-  const reset_action = () => {
+  const handle_reset = () => {
     setCommaCount(0);
+    setOperation("");
     setCurrentCalc([]);
+  };
+
+  const set_operator = (e) => {
+    const operator = e.target.name;
+
+    const lastChar =
+      currentCalc[currentCalc.length - 1]; /* me rendi ao camelCase */
+
+    /* isso é arte */
+    if (operators.includes(lastChar)) {
+      setCurrentCalc((prev) => [...prev.slice(0, -1), operator]);
+      return;
+    }
+
+    setCurrentCalc((prev) => [...prev, operator]);
   };
 
   useEffect(() => {
@@ -79,7 +120,12 @@ function App() {
           <button className="key" onClick={add_nums_into_screen} name="9">
             9
           </button>
-          <button className="key delete_btn">DEL</button>
+          <button
+            className="key delete_btn"
+            onClick={() => setCurrentCalc((prev) => prev.slice(0, -1))}
+          >
+            DEL
+          </button>
           <button className="key" onClick={add_nums_into_screen} name="4">
             4
           </button>
@@ -89,7 +135,9 @@ function App() {
           <button className="key" onClick={add_nums_into_screen} name="6">
             6
           </button>
-          <button className="key">+</button>
+          <button className="key" name="+" onClick={set_operator}>
+            +
+          </button>
           <button className="key" onClick={add_nums_into_screen} name="1">
             1
           </button>
@@ -99,19 +147,27 @@ function App() {
           <button className="key" onClick={add_nums_into_screen} name="3">
             3
           </button>
-          <button className="key">-</button>
+          <button className="key" name="-" onClick={set_operator}>
+            -
+          </button>
           <button className="key" onClick={add_nums_into_screen} name=",">
             .
           </button>
           <button className="key" onClick={add_nums_into_screen} name="0">
             0
           </button>
-          <button className="key">/</button>
-          <button className="key">x</button>
-          <button className="reset_btn" onClick={reset_action}>
+          <button className="key" name="/" onClick={set_operator}>
+            /
+          </button>
+          <button className="key" name="x" onClick={set_operator}>
+            x
+          </button>
+          <button className="reset_btn" onClick={handle_reset}>
             RESET
           </button>
-          <button className="equals_btn">=</button>
+          <button className="equals_btn" onClick={calculate}>
+            =
+          </button>
         </div>
       </main>
     </>
